@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Gemunu+Libre:wght@700&family=Kanit:wght@700&family=Playfair+Display:wght@700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@300;400;700&family=Silkscreen&display=swap');
+ :root {
+  font-family: 'Kanit', serif;
+  font-size: 16px;
+  /* line-height: 24px;
+  font-weight: 400; */
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: rgb(29, 51, 122);
+
+}
+
+li{
+  list-style-type: none;
+}
+
+.InfoAbout > h2{
+  font-size: 40px;
+  margin-top: 30px
+}
+
+.InfoAbout > p{
+  font-size: 20px;
+  width: 700px;
+  margin: 35px 0 0 350px;
+}
+.detailCountry{
+  border: 2px solid beige;
+  background-image: url("https://www.todofondos.net/wp-content/uploads/1680x1050-Fondo-de-Pantalla-de-Madera-Negra-1024x640.jpg");
+}
+
+.detailCountry > img{
+  width: 500px;
+}
+.createInput{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 15px;
+  margin-left: 680px;
+  cursor: pointer;
+  background: red;
+}
+.createInput:hover{
+  font-size: 20px;
+  transition: 0.8s;
+  background: green;
+}

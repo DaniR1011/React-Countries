@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "use-debounce": "^8.0.4"
+  }
+}
