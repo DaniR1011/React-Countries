@@ -1,51 +1,261 @@
-@import url('https://fonts.googleapis.com/css2?family=Alkalami&family=Gemunu+Libre:wght@700&family=Kanit:wght@700&family=Playfair+Display:wght@700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@300;400;700&family=Silkscreen&display=swap');
- :root {
+@font-face {
   font-family: 'Kanit', serif;
-  font-size: 16px;
-  /* line-height: 24px;
-  font-weight: 400; */
+  src: url('https://fonts.googleapis.com/css2?family=Alkalami&family=Gemunu+Libre:wght@700&family=Kanit:wght@700&family=Playfair+Display:wght@700&family=Roboto+Condensed:wght@400;700&family=Roboto+Mono:wght@300;400;700&family=Silkscreen&display=swap');
+  font-display: block;
+} 
 
-  color-scheme: light dark;
+:root {
   color: rgba(255, 255, 255, 0.87);
-  background-color: rgb(29, 51, 122);
+  width: 100vw;
+  text-align: center;
+}
 
+main{
+  min-height: 78vh;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Kanit', sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
 }
 
 li{
   list-style-type: none;
 }
 
-.InfoAbout > h2{
-  font-size: 40px;
-  margin-top: 30px
+/* Nav */
+.App > nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  min-height: 12vh;
+  background-color: #bf9750;
 }
-
-.InfoAbout > p{
+.App > nav > img{
+  width: 100px;
+  height: 100px;
+}
+.App > nav > a{
+  all: unset;
   font-size: 20px;
-  width: 700px;
-  margin: 35px 0 0 350px;
+  cursor: pointer;
 }
-.detailCountry{
-  border: 2px solid beige;
-  background-image: url("https://www.todofondos.net/wp-content/uploads/1680x1050-Fondo-de-Pantalla-de-Madera-Negra-1024x640.jpg");
+.App > nav > a:hover{
+  font-size: 30px;
+  transition: 0.8s;
 }
 
-.detailCountry > img{
-  width: 500px;
+/* Tema claro / Oscuro */
+.color-dark {
+  background-color: #1a1a1a;
+  color:  rgba(255, 255, 255, 0.87);
 }
-.createInput{
+.color-light {
+  background-color: rgba(255, 255, 255, 0.87);
+  color: #1a1a1a;
+}
+.theme-button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  font-family: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  width: 50px;
+  font-size: 30px;
+}
+.theme-button:hover {
+  font-size: 35px;
+  transition: 0.5s;
+} 
+
+/* Footer */
+.footer{
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  /* background-color: #bf9750; */
+}
+.GitHubButton{
+  all: unset;
+}
+.LinkedinButton{
+  all: unset;
+}
+.GitHub{
+  width: 40px;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+.Linkedin{
+  width: 40px;
+  cursor: pointer;
+}
+
+/* Home */
+.Home{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+.Home > h2{
+  font-size: 50px;
+  margin-top: 80px;
+}
+.Home > img{
+  margin-top: 30px;
+}
+.Home > p{
+  margin-top: 15px;
+  font-size: 20px;
+  text-align: justify;
+  width: 65%;
+}
+
+/* Countries */
+.gallery{
+  margin-top: 60px;
+  width: 98vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+}
+.gallery > a{
+  gap: 20px;
+  width: 300px;
+}
+.CountriesHome{
+  display: flex;
+  flex-direction: column;
+}
+.finder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.finder > input{
+  all: unset;
+  text-align: center;
+  border: 2px solid blue;
+  width: 300px;
+  height: 50px;
+  color: blue;
+}
+
+/* Countries -> Country */
+.detail>div {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 2rem;
+  backdrop-filter: blur(0.4rem) brightness(50%);
+}
+.gallery > figure > a{
+  all: unset;
+  font-size: 15px;
+  cursor: pointer;
+  color: green;
+}
+.detail{
+  background-size: cover;
+}
+.image-container > img{
+  width: 300px;
+}
+
+/* Form */
+.formCountries{
+  all: unset;
+  margin-top: 20px;
+}
+.formCountries > legend{
+  font-size: 25px;
+}
+.formContainer{
+  display: flex;
+  flex-direction: column;
+}
+.formContainer > input{
+  text-align: center;
+  border-radius: 30px;
+}
+.preview{
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
-  font-size: 15px;
-  margin-left: 680px;
-  cursor: pointer;
-  background: red;
+  gap: 100px;
 }
-.createInput:hover{
+.Form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 70px;
+}
+.Form > input{
+  text-align: center;
+  border-radius: 70px;
+  border: 2px solid black;
   font-size: 20px;
-  transition: 0.8s;
-  background: green;
 }
+.Form > .Create{
+  text-align: center;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 0px;
+  background-color: red;
+}
+.Form > .Create:hover{
+  background-color: green;
+}
+.preview > .Card > p{
+  margin-top: 20px;
+  width: 300px;
+}
+.Card > p{
+  margin-top: 20px;
+}
+/* About */
+.InfoAbout{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw; 
+}
+.InfoAbout > h2{
+  font-size: 40px;
+  margin-top: 30px
+}
+.InfoAbout > p{
+  font-size: 20px;
+  margin-top: 60px;
+  width: 50vw
+}
+
+
+
+
+
+
+
+

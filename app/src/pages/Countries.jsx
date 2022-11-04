@@ -1,91 +1,56 @@
-import {Link, Outlet} from 'react-router-dom'
-import axios from 'axios'
-import {v4 as uuidv4} from 'uuid'
-import React from 'react'
-import { useState, useEffect } from 'react'
-import CountryDetail from '../Components/CountryDetail'
-import CountriesGallery from '../Components/CountriesGallery'
-import '../App.css'
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
+import { getCountries } from "../API/api.js";
+import Image from "../components/Image/Image";
 
 const Countries = () => {
-  const [name, setName] = useState("");
-  const [bandera, setBandera] = useState("");
-  const [capital, setCapital] = useState("");
-  const [currency, setCurrency] = useState("");
-  const [population, setPopulation] = useState(0);
   const [countries, setCountries] = useState([]);
-  // const [countries, setCountries] = useState(getCountries());
+  const [filter, setFilter] = useState("");
 
-useEffect(() => {
-  const getCountries = async() => {
-    const data = await fetch ("http://localhost:8080/countries");
-    const res = await data.json();
-    setCountries(res);
-  };
-  getCountries();
-}, []);
+  useEffect(() => {
+    loadingData();
+  }, [filter]);
 
-  const createCountry = (ev) => {
-    ev.preventDefault()
-    const country = {
-      name: name,
-      bandera: bandera,
-      capital: capital,
-      currency: currency,
-      population: population, 
-      id: uuidv4()
+  const loadingData = () => {
+    if (filter === "") {
+      getCountries().then((data) => {
+        setCountries(data);
+      });
+    } else {
+      const filteredCountries = filtered("name", countries);
+      setCountries(filteredCountries);
     }
-    postCountry(country);
   };
 
-const postCountry = async (item) => {
-    axios({
-      method: "post",
-      url: "http://localhost:8080/countries",
-      data: item,
-    });
-};
-  
+  const filtered = (name, list) => {
+    return list.filter((item) =>
+      item[name].toLowerCase().includes(filter.toLowerCase())
+    );
+  };
+
   return (
     <>
-    <div>
-      <form onSubmit={(ev) => createCountry(ev)}>
-      <fieldset className='formCountries'>
-        <legend>➕ Add your favourite Country ➕</legend>
-        <div className='formContainer'>
-          <label htmlFor='name'>Name ❞</label>
-          <input type="text" name="name" id="name" onChange={(ev) => setName(ev.target.value)}/>
-          <label htmlFor="bandera">Flag 🏳</label>
-          <input type="text" name='bandera' id='bandera' onChange={(ev) => setBandera(ev.target.value)}/>
-          <label htmlFor="capital">Capital 🏟</label>
-          <input type="text" name='capital' id='capital' onChange={(ev) => setCapital(ev.target.value)}/>
-          <label htmlFor="currency">Currency 💶</label>
-          <input type="currency" name='currency' id='currency' onChange={(ev) => setCurrency(ev.target.value)}/>
-          <label htmlFor='population'>Population in million 👥</label>
-          <input type="text" name='population' id='population' onChange={(ev) => setPopulation(ev.target.value)}/>
-        </div>
-      </fieldset>
-      <input className='createInput' type="submit" value="Create" />
-      </form>
-      <CountriesGallery countries={countries}/>
-     </div>
-
-    {/* <div className='CountriesHome'>
-      <h1>Todos los Countries</h1>
-      <ul className='Flags'>
-        {
-          countries.map((country) => (
-            <li key={country.id}>
-              <Link to={`/countries/${country.id}`}>
-                <CountryDetail country={country} />
-              </Link>
-            </li>
-          ))
-        }
-      </ul>
-    </div> */}
-    <Outlet />
+      <div className="finder">
+        <input
+          type="text"
+          placeholder="Find country..."
+          onChange={(e) => setFilter(e.target.value)}
+        />
+      </div>
+      <section className="gallery">
+        {countries.map((country) => (
+          <Link to={`/countries/${country.id}`} key={country.id}>
+            <Image
+              source={country.bandera}
+              alternative={country.title}
+              size="10rem"
+            />
+          </Link>
+        ))}
+      </section>
     </>
-  )
-}
-export default Countries
+  );
+};
+
+export default Countries;
